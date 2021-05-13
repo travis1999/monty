@@ -46,7 +46,6 @@ int main(int argv, char **argc)
 		{
 			buffer[idx] = '\0';
 			idx = 0;
-			line_number++;
 			op = strtok(buffer, " ");
 			value = strtok(NULL, " ");
 			if (op == NULL)
@@ -54,11 +53,11 @@ int main(int argv, char **argc)
 			func = get_func(op);
 			if (func == NULL)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op);
+				fprintf(stderr, "L%d: unknown instruction %s\n", line_number + 1, op);
 				break;
 			}
 			data.data = (void *)value;
-			func(&program_stack, line_number);
+			func(&program_stack, line_number++);
 			continue;
 		}
 		buffer[idx++] = ch;
@@ -67,4 +66,5 @@ int main(int argv, char **argc)
 	clean(program_stack);
 	if (data.err)
 		exit(EXIT_FAILURE);
+	return (0);
 }
