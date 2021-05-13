@@ -119,38 +119,18 @@ int delete_element(stack_t **head, unsigned int index)
 }
 
 /**
- * push - adds a node to the end of the list
- * @head: double pointer to the beginning of the list
- * @n: value to add to new element
- * Return: pointer to the new node, or NULL on failure
+ * clean - cleans the stack
+ * @h: head of the stack
  */
-stack_t *push(stack_t **head, int n)
+void clean(stack_t *h)
 {
-	return (add_new_end(head, n));
-}
+	size_t i;
+	stack_t *next = NULL;
 
-
-
-/**
- * pop_top - adds a node to the end of the list
- * @head: double pointer to the beginning of the list
- * @n: value to add to new element
- * Return: pointer to the new node, or NULL on failure
- */
-stack_t *pop_top(stack_t **head)
-{
-	stack_t *current;
-
-	if (head == NULL || *head == NULL)
-		return (NULL);
-	current = *head;
-
-	*head = current->next;
-	if (current->next != NULL)
+	for (i = 0; h != NULL; i++)
 	{
-		current->next->prev = NULL;
+		next = h->next;
+		free(h);
+		h = next;
 	}
-
-	return (current);
-
 }
