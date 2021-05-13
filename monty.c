@@ -9,5 +9,10 @@
 
 int main(int argv, char **argc)
 {
+	if (argv != 2)
+	{
+		printf("USAGE: monty file");
+		exit(1);
+	}
 	return (0);
 }
