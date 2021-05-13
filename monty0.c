@@ -46,7 +46,7 @@ void pop(stack_t **head, unsigned int line_number)
 	if (node == NULL)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
-		err = 1;
+		data.err = 1;
 	}
 	free(node);
 }
@@ -58,14 +58,14 @@ void pop(stack_t **head, unsigned int line_number)
  */
 void push(stack_t **head, unsigned int line_number)
 {
-	int number = atoi((char *)data);
+	int number = atoi((char *)data.data);
 
-	if (data == NULL || number == 0)
+	if (data.data == NULL || number == 0)
 	{
-		if (!(strlen((char *)data) == 1 && ((char *)data)[0] == '0'))
+		if (!(strlen((char *)data.data) == 1 && ((char *)data.data)[0] == '0'))
 		{
 			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
-			err = 1;
+			data.err = 1;
 		}
 	}
 	push_bot(head, number);

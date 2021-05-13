@@ -7,8 +7,21 @@
 #include <stdio.h>
 #include <unistd.h>
 
-extern void *data;
-extern int err;
+/**
+ * struct data - stores global variables
+ * @data: void pointer used to store any variable
+ * @err: error flag
+ * Description: stores global variables
+ * required for execution
+ */
+typedef struct data
+{
+	void *data;
+	int err;
+} Data;
+
+extern Data data;
+
 stack_t *push_bot(stack_t **head, int n);
 stack_t *pop_top(stack_t **head);
 void (*get_func(char *op))(stack_t **stack, unsigned int line_number);

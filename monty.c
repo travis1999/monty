@@ -7,8 +7,7 @@
 #include "monty.h"
 
 
-void *data;
-int err;
+Data data = {NULL, 0};
 
 /**
  * p_error - prints an error to std err
@@ -42,7 +41,7 @@ int main(int argv, char **argc)
 	fd = open_file(argc[1]);
 	while (ch != EOF)
 	{
-		if (err)
+		if (data.err)
 			break;
 		ch = fgetc(fd);
 		if (ch == '\n' || ch == EOF)
@@ -60,7 +59,7 @@ int main(int argv, char **argc)
 				printf("L%d: unknown instruction %s\n", line_number, op);
 				break;
 			}
-			data = (void *)value;
+			data.data = (void *)value;
 			func(&program_stack, line_number);
 			continue;
 		}
@@ -68,6 +67,6 @@ int main(int argv, char **argc)
 	}
 	fclose(fd);
 	clean(program_stack);
-	if (err)
+	if (data.err)
 		exit(EXIT_FAILURE);
 }
