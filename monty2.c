@@ -11,7 +11,7 @@ void sub(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L %d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		data.err = 1;
 		return;
 	}
@@ -31,7 +31,7 @@ void divide(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L %d: can't div, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		data.err = 1;
 		return;
 	}
@@ -51,7 +51,7 @@ void mul(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L %d: can't mul, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		data.err = 1;
 		return;
 	}

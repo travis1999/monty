@@ -64,7 +64,7 @@ void push(stack_t **head, unsigned int line_number)
 	{
 		if (!(strlen((char *)data.data) == 1 && ((char *)data.data)[0] == '0'))
 		{
-			fprintf(stderr, "L %d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			data.err = 1;
 		}
 	}
@@ -78,5 +78,6 @@ void push(stack_t **head, unsigned int line_number)
  */
 void pall(stack_t **head, unsigned int line_number __attribute__((unused)))
 {
-	print_stack(*head);
+	if (*head != NULL)
+		print_stack(*head);
 }
