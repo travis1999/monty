@@ -2,7 +2,22 @@
 #include <stdio.h>
 #include "list.h"
 #include "string.h"
+#include "monty.h"
 
+
+void *data;
+int err;
+
+/**
+ * p_error - prints an error to std err
+ * @error: error to print
+ */
+
+void p_error(char *error)
+{
+	dprintf(STDERR_FILENO, "%s\n", error);
+	exit(EXIT_FAILURE);
+}
 
 /**
  * main - entry point of the program
@@ -13,47 +28,44 @@
 
 int main(int argv, char **argc)
 {
-	stack_t *program_stack = malloc(sizeof(program_stack)); 
+	stack_t *program_stack = NULL;
 	FILE *fd;
-	char buffer[1024];
-	char ch = 'a';
 	size_t idx = 0;
-	size_t line_number = 0;
-
-	char *op;
-	char *value;
+	unsigned int line_number = 0;
+	char *op, *value, buffer[1024], ch = 'a';
+	void (*func)(stack_t **, unsigned int);
 
 	if (argv != 2)
-	{
-		dprintf(STDERR_FILENO, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
+		p_error("USAGE: monty file");
 	fd = open_file(argc[1]);
-
 	while (ch != EOF)
 	{
+		if (err)
+			break;
 		ch = fgetc(fd);
-		if (ch == '\n')
+		if (ch == '\n' || ch == EOF)
 		{
 			buffer[idx] = '\0';
 			idx = 0;
-			
 			line_number++;
-
 			op = strtok(buffer, " ");
 			value = strtok(NULL, " ");
-
-			printf("Line: %ld, {%s, %s}\n", line_number, op, value);
+			if (op == NULL)
+				continue;
+			func = get_func(op);
+			if (func == NULL)
+			{
+				printf("L%d: unknown instruction %s\n", line_number, op);
+				break;
+			}
+			data = (void *)value;
+			func(&program_stack, line_number);
 			continue;
 		}
-
-		buffer[idx] = ch;
-		idx++;
-
+		buffer[idx++] = ch;
 	}
-	
 	fclose(fd);
-	free(program_stack);
-	return (0);
+	clean(program_stack);
+	if (err)
+		exit(EXIT_FAILURE);
 }
