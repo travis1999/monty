@@ -53,7 +53,7 @@ int main(int argv, char **argc)
 			func = get_func(op);
 			if (func == NULL)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s\n", line_number + 1, op);
+				fprintf(stderr, "L %d: unknown instruction %s\n", line_number + 1, op);
 				break;
 			}
 			data.data = (void *)value;
