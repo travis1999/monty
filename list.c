@@ -128,3 +128,29 @@ stack_t *push(stack_t **head, int n)
 {
 	return (add_new_end(head, n));
 }
+
+
+
+/**
+ * pop_top - adds a node to the end of the list
+ * @head: double pointer to the beginning of the list
+ * @n: value to add to new element
+ * Return: pointer to the new node, or NULL on failure
+ */
+stack_t *pop_top(stack_t **head)
+{
+	stack_t *current;
+
+	if (head == NULL || *head == NULL)
+		return (NULL);
+	current = *head;
+
+	*head = current->next;
+	if (current->next != NULL)
+	{
+		current->next->prev = NULL;
+	}
+
+	return (current);
+
+}
