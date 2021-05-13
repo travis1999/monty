@@ -1,6 +1,7 @@
 #include "utils.h"
 #include <stdio.h>
 #include "list.h"
+#include "string.h"
 
 
 /**
