@@ -1,5 +1,3 @@
-#define _POSIX_C_SOURCE 200809L
-#define _GNU_SOURCE
 #include "utils.h"
 #include <stdio.h>
 #include "list.h"
@@ -16,7 +14,7 @@ Data data = {NULL, 0};
 
 void p_error(char *error)
 {
-	dprintf(STDERR_FILENO, "%s\n", error);
+	fprintf(stderr, "%s\n", error);
 	exit(EXIT_FAILURE);
 }
 
@@ -56,7 +54,7 @@ int main(int argv, char **argc)
 			func = get_func(op);
 			if (func == NULL)
 			{
-				printf("L%d: unknown instruction %s\n", line_number, op);
+				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op);
 				break;
 			}
 			data.data = (void *)value;

@@ -45,7 +45,7 @@ void pop(stack_t **head, unsigned int line_number)
 
 	if (node == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		data.err = 1;
 	}
 	free(node);
@@ -64,7 +64,7 @@ void push(stack_t **head, unsigned int line_number)
 	{
 		if (!(strlen((char *)data.data) == 1 && ((char *)data.data)[0] == '0'))
 		{
-			dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
 			data.err = 1;
 		}
 	}

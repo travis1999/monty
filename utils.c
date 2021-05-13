@@ -12,7 +12,7 @@ FILE *open_file(const char *filename)
 	fd = fopen(filename, "r+");
 	if (fd == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't open file %s\n", filename);
+		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	return (fd);

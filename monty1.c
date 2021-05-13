@@ -19,7 +19,7 @@ void pint(stack_t **head, unsigned int line_number)
 {
 	if (*head == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		data.err = 1;
 	}
 
@@ -37,7 +37,7 @@ void add(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		data.err = 1;
 		return;
 	}
@@ -59,7 +59,7 @@ void swap(stack_t **head, unsigned int line_number)
 
 	if (first_num == NULL || second_num == NULL)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short,\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short,\n", line_number);
 		data.err = 1;
 		return;
 	}
