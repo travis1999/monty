@@ -1,3 +1,5 @@
+#define _POSIX_C_SOURCE 200809L
+#define _GNU_SOURCE
 #include "utils.h"
 #include <stdio.h>
 #include "list.h"
