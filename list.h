@@ -34,6 +34,13 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+
 size_t print_stack(const stack_t *h);
+stack_t *add_new(stack_t **head, const int n);
+stack_t *add_new_end(stack_t **head, const int n);
+int delete_element(stack_t **head, unsigned int index);
+stack_t *push(stack_t **head, int n);
+stack_t *pop_top(stack_t **head);
 
 #endif
