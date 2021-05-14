@@ -1,4 +1,5 @@
 #include "monty.h"
+#include "utils.h"
 
 /**
  * sub - subtacts top two elements in the stack stack
@@ -11,8 +12,7 @@ void sub(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't sub, stack too short");
 		return;
 	}
 
@@ -31,8 +31,7 @@ void divide(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't div, stack too short");
 		return;
 	}
 
@@ -51,8 +50,7 @@ void mul(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't mul, stack too short");
 		return;
 	}
 
@@ -71,8 +69,7 @@ void mod(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't mod, stack too short");
 		return;
 	}
 

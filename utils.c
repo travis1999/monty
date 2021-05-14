@@ -17,3 +17,9 @@ FILE *open_file(const char *filename)
 	}
 	return (fd);
 }
+
+void monty_error(unsigned int line_number, char *message)
+{
+	fprintf(stderr, "L%d: %s\n", line_number, message);
+	data.err = 1;
+}

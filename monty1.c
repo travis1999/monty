@@ -1,4 +1,5 @@
 #include "monty.h"
+#include "utils.h"
 
 /**
  * nop - wastes cpu cycles
@@ -19,8 +20,8 @@ void pint(stack_t **head, unsigned int line_number)
 {
 	if (*head == NULL)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't pint, stack empty");
+		return;
 	}
 
 	printf("%d\n", (*head)->n);
@@ -37,8 +38,7 @@ void add(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL || num_1 == NULL)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't add, stack too short");
 		return;
 	}
 
@@ -59,8 +59,7 @@ void swap(stack_t **head, unsigned int line_number)
 
 	if (first_num == NULL || second_num == NULL)
 	{
-		fprintf(stderr, "L%d: can't swap, stack too short,\n", line_number);
-		data.err = 1;
+		monty_error(line_number, "can't swap, stack too short");
 		return;
 	}
 	temp = first_num->n;

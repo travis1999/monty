@@ -65,6 +65,6 @@ int main(int argv, char **argc)
 	fclose(fd);
 	clean(program_stack);
 	if (data.err)
-		exit(EXIT_FAILURE);
+		exit(1);
 	return (0);
 }
